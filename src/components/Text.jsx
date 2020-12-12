@@ -31,9 +31,12 @@ const styles = StyleSheet.create({
   textPlacement: {
     textAlign: theme.placements.center,
   },
+  background: {
+    backgroundColor: theme.background.primary,
+  }
 });
 
-const Text = ({ color, fontSize, fontWeight, textPlacement, style, ...props }) => {
+const Text = ({ color, fontSize, fontWeight, textPlacement, background, style, ...props }) => {
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,
@@ -43,6 +46,7 @@ const Text = ({ color, fontSize, fontWeight, textPlacement, style, ...props }) =
     fontSize === 'heading' && styles.fontSizeHeading,
     fontWeight === 'bold' && styles.fontWeightBold,
     textPlacement === 'center' && styles.textPlacement,
+    background === 'primary' && styles.background,
     style,
   ];
 

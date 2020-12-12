@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     justifyContent: 'space-between',
+  },
+  link: {
+    marginLeft: 10,
+    marginRight:10,
   }
 });
 
@@ -21,12 +25,16 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
-        <Link to='/' component={TouchableOpacity} activeOpacity={0.8}>
-          <Text fontWeight='bold' fontSize='heading' color='white' > Repositories</Text>
-        </Link>
-        <Link to='/signIn' component={TouchableOpacity} activeOpacity={0.8}>
-          <Text fontWeight='bold' fontSize='heading' color='white' > SignIn</Text>
-        </Link>
+        <View style={styles.link}>
+          <Link to='/' component={TouchableOpacity} activeOpacity={0.8}>
+            <Text fontWeight='bold' fontSize='heading' color='white' >Repositories</Text>
+          </Link>
+        </View>
+        <View style={styles.link}>
+          <Link to='/signIn' component={TouchableOpacity} activeOpacity={0.8}>
+            <Text fontWeight='bold' fontSize='heading' color='white' >SignIn</Text>
+          </Link>
+        </View>
       </ScrollView>
     </View>
   );

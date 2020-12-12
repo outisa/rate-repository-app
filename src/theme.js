@@ -21,21 +21,10 @@ const theme ={
     appBar: '#0366a0',
     main: '#e1e4e8',
     listItem: 'white',
+    primary: '#0366d6',
   },
   placements: {
     center: 'center',
-  },
-  languageContainer: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    alignSelf: 'flex-start',
-    marginLeft: 75,
-    marginTop: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-    alignItems: 'center',
   },
 };
 
