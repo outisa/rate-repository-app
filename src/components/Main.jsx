@@ -1,32 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Route, Switch, Redirect } from 'react-router-native';
+
 import RepositoryList from './RepositoryList';
 import AppBar from './AppBar';
 import theme from '../theme';
+import SignIn from './SignIn';
 
 const styles = StyleSheet.create({
   container: {
-      flexGrow: 1,
-      flexShrink: 1,
-    },
-  background: {
     backgroundColor: theme.background.main,
+    flexGrow: 1,
+    flexShrink: 1,
   },
 });
 
 const Main = () => {
-  const mainStyle = [
-      styles.container,
-      styles.background,
-  ];
   return (
-    <View style={mainStyle}>
-      <TouchableWithoutFeedback onPress={() => console.log('hello')} >
+    <View style={styles.container}>
         <AppBar />
-      </TouchableWithoutFeedback>
-      <View>
-        <RepositoryList />
-      </View>
+        <Switch>
+          <Route path="/" exact>
+            <RepositoryList />
+          </Route>
+          <Route path="/signIn" exact>
+            <SignIn/>
+          </Route>          
+          <Redirect to="/" />      
+        </Switch>
     </View>
   );
 };
