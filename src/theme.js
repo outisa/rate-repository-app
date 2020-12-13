@@ -1,4 +1,4 @@
-const theme ={
+const theme = {
   colors: {
     textPrimary: '#24292e',
     textSecondary: '#586069',
@@ -11,7 +11,7 @@ const theme ={
     heading: 20,
   },
   fonts: {
-    main: 'System',
+    main:'System',
   },
   fontWeights: {
     normal: '400',

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginTop: 5,
-    marginBottom: 5,
+    marginBottom: 10,
     borderRadius: 5,
     alignItems: 'center',
     paddingBottom: 10,
