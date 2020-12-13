@@ -1,23 +1,39 @@
 import React from 'react';
-import { TextInput as NativeTextInput, StyleSheet } from 'react-native';
+import { TextInput as NativeTextInput, StyleSheet, ProgressBarAndroidComponent } from 'react-native';
 
 const styles = StyleSheet.create({
   field: {
     backgroundColor: 'white',
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    marginBottom: 5,
     borderColor: 'grey',
     borderWidth: 2,
     padding: 10,
     fontSize: 20,
-  }
+  },
+  errorField: {
+    backgroundColor: 'white',
+    margin: 10,
+    borderColor: 'red',
+    borderWidth: 2,
+    padding: 10,
+    fontSize: 20,
+  },
 });
 
-const TextInput = ({ style, ...props }) => {
-  const textInputStyle =[
+const TextInput = ({ style, error, ...props }) => {
+  let textInputStyle =[
     style,
-    styles.field
+    styles.field,
   ];
-
+  if (error) {
+    textInputStyle =[
+      style,
+      styles.errorField,
+    ];
+  }
   return <NativeTextInput style={textInputStyle} {...props} />;
 };
 
