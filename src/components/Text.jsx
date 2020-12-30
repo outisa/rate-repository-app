@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
   },
   colorWhite: {
-    color: theme.colors.white
+    color: theme.colors.white,
   },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
