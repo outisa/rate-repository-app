@@ -4,11 +4,13 @@ const theme = {
     textSecondary: '#586069',
     primary: '#0366d6',
     white: '#fff',
+    blue: ''
   },
   fontSizes: {
     body: 14,
     subheading:16,
     heading: 20,
+    huge: 18,
   },
   fonts: {
     main:'System',

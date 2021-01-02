@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import theme from '../theme';
 import Text from './Text';
 import ItemStatistics from './ItemStatistics';
+import * as WebBrowser from 'expo-web-browser';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,9 +48,20 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  submit: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    marginBottom: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    paddingBottom: 10,
+    paddingTop: 10,
+    backgroundColor: theme.colors.primary,
+  },
 });
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, info }) => {
   const itemStyle = [
     styles.container,
     styles.colorItem,
@@ -60,8 +72,12 @@ const RepositoryItem = ({ item }) => {
     styles.colorLanguage,
   ];
 
+  const handlePress = async () => {
+    WebBrowser.openBrowserAsync(info.url);
+  };
+
   return (
-    <View style={itemStyle}>
+    <View style={itemStyle} >
       <View style={styles.headerContainer}>
         <Image
           style={styles.tinyLogo}
@@ -69,15 +85,26 @@ const RepositoryItem = ({ item }) => {
             uri: item.ownerAvatarUrl,
           }}
         />
-        <View style={styles.textContainer2}>
+        <View style={styles.textContainer2} testID={`${item.id}, name`}>
           <Text fontWeight='bold' fontSize='heading'>{item.fullName}</Text>
           <Text fontSize='subheading' color='textSecondary'>{item.description}</Text>
         </View>
       </View> 
-      <View style={languageStyle}>
+      <View style={languageStyle} testID={`${item.id}, language`}>
         <Text color='white' fontSize='subheading'>{item.language}</Text>
       </View>
       <ItemStatistics item={item}/>
+      { info ?
+      <>
+        <TouchableWithoutFeedback onPress={handlePress}>
+          <View style={styles.submit}>
+            <Text color='white' fontSize='subheading'>Open in GitHub</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </> 
+      :
+        null
+      }
     </View>
   );
 };

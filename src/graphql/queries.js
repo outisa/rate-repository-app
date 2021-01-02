@@ -28,3 +28,27 @@ export const GET_USER = gql`
     }    
   }
 `;
+
+export const GET_REPOSITORY = gql`
+  query Repository($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }      
+    }
+  }
+`;

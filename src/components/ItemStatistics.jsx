@@ -25,10 +25,10 @@ const handleNumbers = number  => {
 const ItemStatistics = ({ item }) => {
   return (
       <View style={styles.textContainer}>
-        <Text fontSize='subheading' fontWeight='bold' textPlacement='center'>{handleNumbers(item.stargazersCount)}{'\n'}<Text>Stars</Text></Text>
-        <Text fontSize='subheading' fontWeight='bold' textPlacement='center'>{handleNumbers(item.forksCount)}{'\n'}<Text>Forks</Text></Text>
-        <Text fontSize='subheading' fontWeight='bold' textPlacement='center'>{handleNumbers(item.reviewCount)}{'\n'}<Text>Reviews</Text></Text>
-        <Text fontSize='subheading' fontWeight='bold' textPlacement='center'>{handleNumbers(item.ratingAverage)}{'\n'}<Text>Rating</Text></Text>
+        <Text fontSize='subheading' fontWeight='bold' textPlacement='center' testID={`${item.id}, stargazerCount`}>{handleNumbers(item.stargazersCount)}{'\n'}<Text>Stars</Text></Text>
+        <Text fontSize='subheading' fontWeight='bold' textPlacement='center' testID={`${item.id}, forksCount`}>{handleNumbers(item.forksCount)}{'\n'}<Text>Forks</Text></Text>
+        <Text fontSize='subheading' fontWeight='bold' textPlacement='center' testID={`${item.id}, reviewCount`}>{handleNumbers(item.reviewCount)}{'\n'}<Text>Reviews</Text></Text>
+        <Text fontSize='subheading' fontWeight='bold' textPlacement='center' testID={`${item.id}, ratingAverage`}>{handleNumbers(item.ratingAverage)}{'\n'}<Text>Rating</Text></Text>
       </View>
   );
 };
