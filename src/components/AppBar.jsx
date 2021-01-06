@@ -44,17 +44,31 @@ const AppBar = () => {
           </Link>
         </View>
         { user ?
-          <View style={styles.link}>
-            <Link to='/signOut' component={TouchableOpacity} activeOpacity={0.8}>
-              <Text fontWeight='bold' fontSize='heading' color='white' >SignOut</Text>
-            </Link>
-          </View>
+          <>
+            <View style={styles.link}>
+              <Link to='/createReview' component={TouchableOpacity} activeOpacity={0.8}>
+                <Text fontWeight='bold' fontSize='heading' color='white' >Create a Review</Text>
+              </Link>
+            </View>
+            <View style={styles.link}>
+              <Link to='/signOut' component={TouchableOpacity} activeOpacity={0.8}>
+                <Text fontWeight='bold' fontSize='heading' color='white' >SignOut</Text>
+              </Link>
+            </View>
+          </>
           :
-          <View style={styles.link}>
-            <Link to='/signIn' component={TouchableOpacity} activeOpacity={0.8}>
-              <Text fontWeight='bold' fontSize='heading' color='white' >SignIn</Text>
-            </Link>
-          </View>
+          <>
+            <View style={styles.link}>
+              <Link to='/signUp' component={TouchableOpacity} activeOpacity={0.8}>
+                <Text fontWeight='bold' fontSize='heading' color='white' >SignUp</Text>
+              </Link>
+            </View>
+              <View style={styles.link}>
+                <Link to='/signIn' component={TouchableOpacity} activeOpacity={0.8}>
+                  <Text fontWeight='bold' fontSize='heading' color='white' >SignIn</Text>
+                </Link>
+            </View>
+          </>
         }
       </ScrollView>
     </View>

@@ -8,11 +8,20 @@ export const LOGIN = gql`
   }
 `;
 
-/*export const CREATE_USER = gql`
-  mutation createUser($user: ) {
-    createUser(user: { username: $username, password: $password }) {
+export const CREATE_USER = gql`
+  mutation createUser($user: CreateUserInput) {
+    createUser(user: $user ) {
       id
       username
     }
   }
-`;*/
+`;
+
+export const CREATE_REVIEW = gql`
+  mutation createReview($review: CreateReviewInput){
+    createReview(
+      review: $review) {
+        repositoryId
+    }
+  }  
+`;

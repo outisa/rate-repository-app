@@ -19,16 +19,18 @@ const ShowRepository = () => {
   const { repositories } = useRepositories();
   const { id } = useParams();
   const { repository } = useRepository(id);
+
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
-  const item = repositoryNodes.filter(item => item.id === id);
+
+  const repositoryToshow = repositoryNodes.filter(item => item.id === id);
+
   const info = repository;
 
   const reviewNodes = info
   ? info.reviews.edges.map((edge) => edge.node)
   : [];
-  console.log('kokokok', reviewNodes);
   
   const ItemSeparator = () => <View style={styles.separator} />;
 
@@ -40,7 +42,7 @@ const ShowRepository = () => {
       }}
       keyExtractor={({ id }) => id }
       ListHeaderComponent={() => {
-        return ( <View style={styles.container}><RepositoryItem item={item[0]} info={info} /></View> ); }}
+        return ( <View style={styles.container}><RepositoryItem item={repositoryToshow[0]} info={info} /></View> ); }}
       ItemSeparatorComponent={ItemSeparator}
       />
   );
