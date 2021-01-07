@@ -2,7 +2,7 @@ import { useMutation} from '@apollo/react-hooks';
 import { CREATE_USER } from '../graphql/mutations';
 
 
-const useSignUp= () => {
+const useSignUp = () => {
   const [mutate, result] = useMutation(CREATE_USER);
 
   const createUser= async ({ name, password }) => {

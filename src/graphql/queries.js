@@ -20,6 +20,27 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
+export const GET_REPOSITORIES_AVERAGE_RATING= gql`
+  query Repositories($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection) { 
+      edges {
+        node {
+          id
+          fullName
+          description
+          language
+          forksCount
+          stargazersCount
+          ratingAverage
+          reviewCount
+          ownerAvatarUrl
+        }
+      }
+    }
+  }
+`;
+
+
 export const GET_USER = gql`
   query User {
     authorizedUser {

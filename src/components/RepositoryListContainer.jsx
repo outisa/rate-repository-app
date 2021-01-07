@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity} from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import { useHistory } from 'react-router-native';
+import MenuBar from './MenuBar';
 
 const styles = StyleSheet.create({
   separator: {
@@ -32,6 +33,7 @@ export const RepositoryListContainer = ({ repositories }) => {
           </TouchableOpacity>
         );
       }}
+      ListHeaderComponent={MenuBar}
     />
   );
 };
