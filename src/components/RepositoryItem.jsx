@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItem = ({ item, info }) => {
+const RepositoryItem = ({ item }) => {
   const itemStyle = [
     styles.container,
     styles.colorItem,
@@ -73,7 +73,7 @@ const RepositoryItem = ({ item, info }) => {
   ];
 
   const handlePress = async () => {
-    WebBrowser.openBrowserAsync(info.url);
+    WebBrowser.openBrowserAsync(item.url);
   };
 
   return (
@@ -94,7 +94,7 @@ const RepositoryItem = ({ item, info }) => {
         <Text color='white' fontSize='subheading'>{item.language}</Text>
       </View>
       <ItemStatistics item={item}/>
-      { info ?
+      { item.url ?
       <>
         <TouchableWithoutFeedback onPress={handlePress}>
           <View style={styles.submit}>

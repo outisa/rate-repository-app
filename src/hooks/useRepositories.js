@@ -1,26 +1,47 @@
-import { useState, useEffect } from 'react';
-import { useLazyQuery, useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 
-import { GET_REPOSITORIES, GET_REPOSITORIES_AVERAGE_RATING } from '../graphql/queries';
+import { GET_REPOSITORIES } from '../graphql/queries';
 
-const useRepositories = () => {
-  const [getRepos, result] = useLazyQuery(GET_REPOSITORIES_AVERAGE_RATING);
-
-  const { data } = useQuery(GET_REPOSITORIES, {
+const useRepositories = (variables) => {
+  const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: 'cache-and-network',
+    variables
   });
-  const [repositories, setRepositories] = useState(data?.repositories);
-  const getRepositories = ( orderBy, orderDirection) => {
-    getRepos({ variables: {orderBy: orderBy, orderDirection: orderDirection } });
-  };
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data && data.repositories.pageInfo.hasNextPage;
 
-  useEffect(() => {
-    if (data) {
-      setRepositories(data.repositories);
+    if (!canFetchMore) {
+      return;
     }
-  }, [data]);
 
-  return {result, getRepositories, repositories };
+    fetchMore({
+      query: GET_REPOSITORIES,
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        ...variables,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const nextResult = {
+          repositories: {
+            ...fetchMoreResult.repositories,
+            edges: [
+              ...previousResult.repositories.edges,
+              ...fetchMoreResult.repositories.edges,
+            ],
+          },
+        };
+
+        return nextResult;
+      },
+    });
+  };
+  return {
+    repositories: data ? data.repositories : undefined,
+    fetchMore: handleFetchMore,
+    loading,
+    ...result,
+  };
 };
 
 export default useRepositories;

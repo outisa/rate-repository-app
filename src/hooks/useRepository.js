@@ -1,23 +1,53 @@
-import { useState, useEffect} from 'react';
 import { useQuery }from '@apollo/react-hooks';
 
 import { GET_REPOSITORY } from '../graphql/queries';
 
-const useRepository = (id) => {
-  const { data } = useQuery(GET_REPOSITORY, {
+const useRepository = (variables) => {
+  const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORY, {
     fetchPolicy: 'cache-and-network',
-    variables: { id: id } 
+    variables
   });
 
-  const [repository, setRepository] = useState(null);
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data && data.repository.reviews.pageInfo.hasNextPage;
 
-  useEffect(() => {
-    if (data) {
-      setRepository(data.repository);
+    if (!canFetchMore) {
+      return;
     }
-  }, [data]);
+    console.log('variables',variables);
+    console.log(data.repository.reviews.pageInfo.endCursor);
+    fetchMore({
+      query: GET_REPOSITORY,
+      variables: {
+        after: data.repository.reviews.pageInfo.endCursor,
+        ...variables,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const nextResult = {
+          repository: {
+            ...fetchMoreResult.repository,
+            reviews: {
+              ...fetchMoreResult.repository.reviews,
+              edges: [
+                ...previousResult.repository.reviews.edges,
+                ...fetchMoreResult.repository.reviews.edges,
+              ],
+            }
+          },
+        };
 
-  return {repository};
+        return nextResult;
+      },
+    });
+  };
+
+  return {
+    repository: data ? data.repository : undefined,
+    fetchMore: handleFetchMore,
+    loading,
+    ...result,
+  };
 };
 
 export default useRepository;

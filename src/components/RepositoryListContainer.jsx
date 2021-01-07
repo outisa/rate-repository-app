@@ -2,7 +2,8 @@ import React from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity} from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import { useHistory } from 'react-router-native';
-import MenuBar from './MenuBar';
+//import MenuBar from './MenuBar';
+import RepositoryListHeader from './RepositoryListHeader';
 
 const styles = StyleSheet.create({
   separator: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({ repositories, setVariables, onEndReach }) => {
   const history = useHistory();
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
@@ -33,7 +34,9 @@ export const RepositoryListContainer = ({ repositories }) => {
           </TouchableOpacity>
         );
       }}
-      ListHeaderComponent={MenuBar}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
+      ListHeaderComponent={<RepositoryListHeader setVariables={setVariables}/>}
     />
   );
 };
