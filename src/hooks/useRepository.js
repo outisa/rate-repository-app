@@ -15,8 +15,6 @@ const useRepository = (variables) => {
     if (!canFetchMore) {
       return;
     }
-    console.log('variables',variables);
-    console.log(data.repository.reviews.pageInfo.endCursor);
     fetchMore({
       query: GET_REPOSITORY,
       variables: {

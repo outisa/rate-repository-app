@@ -98,7 +98,7 @@ const RepositoryItem = ({ item }) => {
       <>
         <TouchableWithoutFeedback onPress={handlePress}>
           <View style={styles.submit}>
-            <Text color='white' fontSize='subheading'>Open in GitHub</Text>
+            <Text color='white' fontWeight='bold' fontSize='subheading'>Open in GitHub</Text>
           </View>
         </TouchableWithoutFeedback>
       </> 

@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity} from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import { useHistory } from 'react-router-native';
-//import MenuBar from './MenuBar';
 import RepositoryListHeader from './RepositoryListHeader';
 
 const styles = StyleSheet.create({
@@ -17,7 +16,7 @@ export const RepositoryListContainer = ({ repositories, setVariables, onEndReach
     ? repositories.edges.map((edge) => edge.node)
     : [];
 
-    const ItemSeparator = () => <View style={styles.separator} />;
+  const ItemSeparator = () => <View style={styles.separator} />;
 
   return (
     <FlatList

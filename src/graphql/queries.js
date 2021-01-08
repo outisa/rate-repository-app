@@ -28,10 +28,32 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_USER = gql`
-  query User {
+  query getAuthorizedUser {
     authorizedUser {
       id
       username
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            repositoryId
+            user {
+              id
+              username
+            }
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          totalCount
+          hasNextPage
+        }
+      }
     }    
   }
 `;

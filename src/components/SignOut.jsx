@@ -9,7 +9,6 @@ const SignOut = () => {
   const authStorage = useContext(AuthStorageContext);
   authStorage.removeAccessToken();
   apolloClient.resetStore();
-  console.log('hello');
   history.push('/signIn');
 
   return (
